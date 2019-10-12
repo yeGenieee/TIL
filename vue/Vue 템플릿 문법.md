@@ -241,3 +241,57 @@ watch 속성은 데이터의 변화에 따라 특정 로직을 실행할 수 있
 
 
   대부분의 케이스에는 computed 속성을 이용하여 구현하는 것이 좋음
+
+
+
+## computed 속성을 이용한 클래스 코드 작성 방법
+
+- 기존 v-bind를 이용한 클래스 코드 적용
+
+```html
+<body>
+    <div id="app">
+        <p v-bind:class="{ warning: isError}">Hello</p> <!--조건에 따라 스타일 적용 or 미적용-->
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                cname: 'blue-text',
+                isError: false
+            }
+        });
+    </script>
+</body>
+```
+
+- computed 속성을 이용한 클래스 코드 적용
+  - 이렇게, computed 속성을 클래스 바인딩이나 기본적인 바인딩에 엮을 수 있음
+
+```html
+<body>
+    <div id="app">
+        <p v-bind:class="errorTextColor">Hello</p> <!--조건에 따라 스타일 적용 or 미적용-->
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                cname: 'blue-text',
+                isError: false
+            },
+            computed: {
+                // computed 속성을 클래스 바인딩이나 기본적인 바인딩에 엮을 수 있다
+                errorTextColor: function() {
+                    return this.isError ? 'warning' : null;
+                }
+            }
+        });
+    </script>
+</body>
+```
+
+![image-20191012213525748](../image/7_5_computed.png)
+
