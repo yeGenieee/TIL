@@ -52,6 +52,10 @@ new Vue({
 
 ## computed 속성
 
+- 종속 대상을 따라 저장(캐싱)됨
+
+- 해당 속성이 종속된 대상이 변경될 때만 함수를 실행함
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -155,3 +159,85 @@ new Vue({
 </body>
 ```
 
+
+
+## watch 속성
+
+watch 속성은 데이터의 변화에 따라 특정 로직을 실행할 수 있게 해준다.
+
+데이터 변경에 대한 응답으로 비동기식 또는 시간이 많이 소요되는 조작을 수행하려는 경우에 가장 유용함
+
+```html
+<body>
+    <div id="app">
+        {{ num }}
+        <button v-on:click="addNum">increase</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                num: 10
+            },
+            watch: {
+                // 데이터의 변화에 따라 특정 로직을 실행할 수 있음
+                num: function() {
+                    this.logText();
+                }
+            },
+            methods: {
+                addNum: function() {
+                    this.num = this.num + 1;
+                },
+                logText: function() {
+                    console.log('changed');
+                }
+            }
+        })
+    </script>
+</body>
+```
+
+
+
+## watch vs computed
+
+```html
+<body>
+    <div id="app">
+        {{ num }}
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                num: 10
+            },
+            computed: {
+                // validation, data 계산에 적합
+                doubleNum: function() {
+                    return this.num * 2;
+                }
+            },
+            watch: {
+                // 매번 실행이 부담스러운 로직에 사용
+                num: function(newValue, oldValue) {
+                    this.fetchUserByNumber(newValue);
+                }
+            },
+            methods: {
+                fetchUserByNumber: function(num) {
+                    // console.log(num);
+                    axios.get(num);
+                }
+            }
+        })
+    </script>
+</body>
+```
+
+
+
+  대부분의 케이스에는 computed 속성을 이용하여 구현하는 것이 좋음
