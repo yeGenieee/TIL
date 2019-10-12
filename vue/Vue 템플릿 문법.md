@@ -128,3 +128,30 @@ new Vue({
 
 
 
+## methods 속성과 v-on 디렉티브를 이용한 키보드, 마우스 이벤트 처리 방법
+
+```html
+<button v-on:click="메서드 이름">click me</button>
+```
+
+```html
+<body>
+    <div id="app">
+        <button v-on:click="logText">click me</button>
+        <input type="text" v-on:keyup.enter="logText">
+        <!--event modifier를 이용하여 이벤트 처리(입력시 계속 clicked가 콘솔에 찍히는 것이 아닌 엔터를 누를 때만 콘솔 출력)-->
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            methods: {
+                logText: function() {
+                    console.log('clicked');
+                }
+            }
+        })
+    </script>
+</body>
+```
+
