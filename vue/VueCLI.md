@@ -100,4 +100,3 @@ vue create vue-cli
 ![image-20191012215821638](../image/8_7_npm_run_serve_done.png)
 
 ![Screen Shot 2019-10-12 at 9.59.16 PM](../image/8_8_npm_run_serve_browser.png)
-
