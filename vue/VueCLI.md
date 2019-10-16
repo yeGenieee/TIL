@@ -100,3 +100,100 @@ vue create vue-cli
 ![image-20191012215821638](../image/8_7_npm_run_serve_done.png)
 
 ![Screen Shot 2019-10-12 at 9.59.16 PM](../image/8_8_npm_run_serve_browser.png)
+
+
+
+## Vue CLI로 생성한 프로젝트 폴더 구조 확인 및 main.js 파일
+
+####`npm run serve`
+
+- `package.json` 파일 내 `scripts.serve` 명령어를 실행하는 것 (`vue-cli-service serve`)
+
+-  `npm run serve` 를 통해 실행되는 파일은?
+
+  - `public/index.html` 에 빌드된 파일들이 자동으로 (최소한의 파일로 변환됨) 주입됨
+
+  - 변환되는 내용들은 --> `src` 디렉토리 하위에 있는 컴포넌트들!
+
+  - `src/main.js`
+
+  - ```javascript
+    import Vue from 'vue'
+    import App from './App.vue'
+    
+    Vue.config.productionTip = false
+    
+    new Vue({
+      render: h => h(App), // import한 컴포넌트 파일을 렌더링
+    }).$mount('#app')
+    ```
+
+```javascript
+new Vue({
+	el: '#app'
+})
+와
+new Vue({
+  
+}).$mount('#app')
+은 동일
+```
+
+```javascript
+import App from './App.vue'
+
+new Vue({
+  render: h => h(App), // import한 컴포넌트 파일을 렌더링
+})
+
+과
+
+var App = {
+	template: '<div>app</div>'
+}
+
+new Vue({
+	components: {
+		'app': App
+	}
+})
+은 동일
+```
+
+
+
+## 싱글 파일 컴포넌트
+
+- 새로운 뷰 파일을 작성시, vue 입력 + Tab을 통해 기본적인 vue 구조를 잡을 수 있음 (Vetur 플러그인을 통해 가능)
+
+```javascript
+var appHeader = {
+	template: '<div>header</div>',
+	methods: {
+		addNum: function() {
+		
+		}
+	}
+}
+```
+
+- 싱글 파일 컴포넌트를 이용하여 위의 코드와 동일하게 작성 (template / script / style 구조 기억하기)
+
+  ```html
+  <template>
+  </template>
+  <script>
+  export default {
+      // JavaScript - 인스턴스 옵션
+      methods: {
+          addNum: function() {
+              
+          }
+      }
+  
+  }
+  </script>
+  <style>
+  </style>
+  ```
+
