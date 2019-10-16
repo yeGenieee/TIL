@@ -31,10 +31,15 @@
 </template>
 
 <script>
+// 이전에 사용하던 방식
+// var appContent = {
+//   props: ['propsdata']
+// }
 export default {
+  // 인스턴스 옵션 속성
   name: 'HelloWorld',
   props: {
-    msg: String
+    msg: String // props: ['msg'] 와 동일
   }
 }
 </script>

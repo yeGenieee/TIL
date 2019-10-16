@@ -197,3 +197,48 @@ var appHeader = {
   </style>
   ```
 
+
+
+### 싱글 파일 컴포넌트 import
+
+- Vue에서 컴포넌트를 import하여 사용하는 방식
+
+```html
+<template>
+  <div id="app">
+    <img alt="Vue logo" src="./assets/logo.png">
+    <HelloWorld msg="Welcome to Your Vue.js App"/> <!--파스칼 케이스-->
+  </div>
+</template>
+
+<script>
+import HelloWorld from './components/HelloWorld.vue' // HelloWorld 컴포넌트를 불러옴
+
+export default {
+  // 인스턴스 옵션 속성 or 컴포넌트 옵션 속성
+  name: 'app',
+  components: {
+    HelloWorld // 'hello-world': HelloWorld 와 동일한 형태이다
+  }
+}
+</script>
+```
+
+- `HelloWorld.vue`
+
+  ```html
+  <script>
+  // 이전에 사용하던 방식
+  // var appContent = {
+  //   props: ['propsdata']
+  // }
+  export default {
+    // 인스턴스 옵션 속성
+    name: 'HelloWorld',
+    props: {
+      msg: String // props: ['msg'] 와 동일
+    }
+  }
+  </script>
+  ```
+
