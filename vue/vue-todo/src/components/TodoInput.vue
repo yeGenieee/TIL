@@ -18,6 +18,9 @@ export default {
       // console.log(this.newTodoItem);
       // localStorage에 저장하는 로직
       localStorage.setItem(this.newTodoItem, this.newTodoItem);
+      this.clearInput();
+    },
+    clearInput: function() {
       this.newTodoItem = '';
     }
   }
