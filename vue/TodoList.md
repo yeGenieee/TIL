@@ -133,3 +133,55 @@ li {
 ### v-for의 index
 
 - v-for를 이용하면 내장 index가 있음 (리스트 item의 순서를 내장)
+
+  ```html
+  <li v-for="(todoItem, index) in todoItems" v-bind:key="todoItem" class="shadow">
+  	{{ todoItem }}
+  	<span class="removeBtn" v-on:click="removeTodo(todoItem, index)">
+  		<i class="fas fa-trash-alt"></i>
+  	</span>
+  </li>
+  ```
+
+- removeTodo 메소드
+
+  ```javascript
+  methods: {
+  	removeTodo: function(todoItem, index) {
+  		console.log(todoItem , index);
+  	}
+  },
+  ```
+
+  ![image-20191028120456454](/Users/yegenieee/Desktop/Github_TIL/TIL/image/14_vue_v_for_index.png)
+
+
+
+#### removeTodo 메소드
+
+- 특정 아이템을 localStorage에서 삭제
+
+  ```javascript
+  methods: {
+  	removeTodo: function(todoItem, index) {
+  		console.log(todoItem , index);
+  		localStorage.removeItem(todoItem); // localStorage 아이템 지우기 (브라우저 저장소 영역)
+  	}
+  },
+  ```
+
+  
+
+- 특정 아이템을 data에서도 삭제
+
+  ```javascript
+  methods: {
+  	removeTodo: function(todoItem, index) {
+  		console.log(todoItem , index);
+  		localStorage.removeItem(todoItem); // localStorage 아이템 지우기 (브라우저 저장소 영역)
+  		this.todoItems.splice(index, 1); // 특정 인덱스를 지울 수 있는 자바스크립트 배열 메소드 (스크립트 영역)
+  	}
+  },
+  ```
+
+  
