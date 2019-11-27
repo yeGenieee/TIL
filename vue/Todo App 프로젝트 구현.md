@@ -293,3 +293,47 @@ created: function() {
 
   ![image-20191127205028438](../image/6_6_todolist_completed.png)
 
+
+
+
+
+## TodoFooter.vue 
+
+```html
+<template>
+  <div class="clearAllContainer">
+      <span class="clearAllBtn" v-on:click="clearTodo">Clear All</span>
+  </div>
+</template>
+
+<script>
+export default {
+	methods: {
+    clearTodo: function() {
+      // 브라우저 로컬 스토리지에 저장 되어 있던 값들 모두 삭제
+      localStorage.clear();
+    }
+  }
+}
+</script>
+
+<style scoped>
+.clearAllContainer {
+  width: 8.5rem;
+  height: 50px;
+  line-height: 50px;
+  background-color: white;
+  border-radius: 5px;
+  margin: 0 auto;
+}
+.clearAllBtn {
+  color: #e20303;
+  display: block;
+}
+</style>
+```
+
+<img src="../image/6_7_todoFooter.png" alt="image-20191127210024371" style="zoom:50%;" />
+
+
+
