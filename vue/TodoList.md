@@ -185,3 +185,18 @@ li {
   ```
 
   
+
+## TodoList 컴포넌트의 할 일 완료 기능 구현
+
+### 할 일 완료 버튼 (checkBtn) 추가
+
+```html
+<li v-for="(todoItem, index) in todoItems" v-bind:key="todoItem" class="shadow">
+	<i class="checkBtn fas fa-check"></i>
+		{{ todoItem }}
+		<span class="removeBtn" v-on:click="removeTodo(todoItem, index)">
+			<i class="fas fa-trash-alt"></i>
+    </span>
+</li>
+```
+
