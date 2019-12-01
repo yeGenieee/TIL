@@ -2,7 +2,9 @@
   <div id="app">
     <todo-header></todo-header>
     <todo-input v-on:addTodoItem="addOneItem"></todo-input>
-    <todo-list v-bind:propsdata="todoItems" v-on:removeTodoItem="removeOneItem" v-on:toggleTodoItem="toggleOneItem"></todo-list>
+    <todo-list v-bind:propsdata="todoItems" 
+      v-on:removeTodoItem="removeOneItem" 
+      v-on:toggleTodoItem="toggleOneItem"></todo-list>
     <todo-footer></todo-footer>
   </div>
 </template>
@@ -49,7 +51,7 @@ export default {
      this.todoItems.splice(index, 1); // 특정 인덱스를 지울 수 있는 자바스크립트 배열 메소드 (스크립트 영역)
     },
     toggleOneItem: function(todoItem, index) {
-      todoItem.completed = !todoItem.completed;
+      this.todoItems[index].completed = !this.todoItems[index].completed;
       // 로컬 스토리지에 데이터 갱신
       localStorage.removeItem(todoItem.item);
       localStorage.setItem(todoItem.item, JSON.stringify(todoItem));

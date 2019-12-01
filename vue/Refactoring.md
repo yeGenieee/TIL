@@ -123,7 +123,7 @@
 
 - App.vue (이벤트 받는 부분 `v-on`설정)
 
-  ```javascript
+  ```html
   <todo-list v-bind:propsdata="todoItems" v-on:removeTodoItem="removeOneItem"></todo-list>
   ```
 
@@ -154,5 +154,50 @@
 
 ## 할 일 완료 기능
 
-- 
+- TodoList.vue에서 관리하던 toggleItem을 이제 App.vue에서 관리
+
+- App.vue (이벤트 받는 부분 `v-on` 설정)
+
+  ```html
+  <todo-list v-bind:propsdata="todoItems"
+  	v-on:removeTodoItem="removeOneItem"
+  	v-on:toggleTodoItem="toggleOneItem"></todo-list>
+  ```
+
+  
+
+- TodoList.vue 내 toggleItem 메서드 수정
+
+  ```javascript
+  toggleComplete: function(todoItem, index) {
+  		this.$emit('toggleTodoItem', todoItem, index);
+  }
+  ```
+
+- App.vue의 toggleOneItem 메서드 추가
+
+  ```javascript
+  toggleOneItem: function(todoItem, index) {
+  		todoItem.completed = !todoItem.completed;
+  		// 로컬 스토리지에 데이터 갱신
+  		localStorage.removeItem(todoItem.item);
+      localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
+  }
+  ```
+
+
+
+### 안티 패턴 해결
+
+- App.vue 내에서 하위 컴포넌트로 내렸던 todoItems 속성을, (하위에서는 propsdata로 사용) 다시 위로 올려서 App.vue 메서드 내에서. todoItem에 바로 접근해서 변경하는 행위는 좋지 않은 패턴임
+
+  - App.vue의 toggleOneItem 메서드 변경
+
+    ```javascript
+    this.todoItems[index].completed = !this.todoItems[index].completed;
+    ```
+
+    
+
+  
 
