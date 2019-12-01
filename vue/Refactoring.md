@@ -55,3 +55,65 @@
 
 
 
+
+
+
+
+## 할 일 추가 기능
+
+- TodoInput.vue (하위 컴포넌트)에서 발생시킨 event 를 상위 컴포넌트인 App.vue에서 활용할 수 있도록 함
+
+- App.vue
+
+  ```html
+  <todo-input v-on:하위 컴포넌트에서 발생시킨 이벤트="현재 컴포넌트의 메서드 명"></todo-input>
+  ```
+
+  ```html
+  <todo-input v-on:=""></todo-input>
+  ```
+
+
+
+- TodoInput.vue
+
+  - 새로운 todoItem을 등록하는 메서드에서 새로운 항목을 상위 컴포넌트로 전달하는 eventEmit을 작성
+
+    ```javascript
+    export function {
+    	...
+    	methods: {
+    		addTodo: function() {
+    			if(this.newTodoItem !== '') {
+    				  methods: {
+        addTodo: function() {
+          if (this.newTodoItem !== '') {
+            // this.newTodoItem만 상위 컴포넌트로 보내줄 수 있도록 함
+           	this.$emit('이벤트 이름', 인자1, 인자2,...);
+           	this.clearInput();
+    			}
+    		}
+    	}
+    	...
+    }
+    ```
+
+    ```javascript
+    this.$emit('addTodoItem', this.newTodoItem);
+    ```
+
+- App.vue
+
+  - 하위 컴포넌트인 TodoInput.vue에서 data를 전달받아 상위 컴포넌트인 App.vue에서 새로운 item을 등록하는 addOneItem 메소드 작성
+
+    ```javascript
+    methods: {
+    	addOneItem: function(todoItem) {
+    		var obj = {completed: false, item: todoItem};
+    		localStorage.setItem(todoItem, JSON.stringify(obj));
+    		this.todoItems.push(obj);
+    	}
+    }
+    ```
+
+    

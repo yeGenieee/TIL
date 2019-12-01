@@ -18,21 +18,11 @@ export default {
   },
   methods: {
     addTodo: function() {
-      // this는 TodoInput 컴포넌트
-      // console.log(this.newTodoItem);
-
       if (this.newTodoItem !== '') {
-        // 완료된 일인지 아닌지 체크할 수 있도록 함
-        var obj = { completed: false, item: this.newTodoItem};
-        
-        // localStorage에 저장하는 로직 (단순 string 만 저장)
-        // localStorage.setItem(this.newTodoItem, this.newTodoItem);
-
-        // localStorage에 저장하는 로직 (완료 여부까지 저장)
-        localStorage.setItem(this.newTodoItem, JSON.stringify(obj));
+        // this.newTodoItem만 상위 컴포넌트로 보내줄 수 있도록 함
+        this.$emit('addTodoItem', this.newTodoItem);
+        this.clearInput();
       }
-
-      this.clearInput();
     },
     clearInput: function() {
       this.newTodoItem = '';
