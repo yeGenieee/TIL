@@ -70,7 +70,7 @@
   ```
 
   ```html
-  <todo-input v-on:=""></todo-input>
+  <todo-input v-on:addTodoItem="addOneItem"></todo-input>
   ```
 
 
@@ -83,9 +83,6 @@
     export function {
     	...
     	methods: {
-    		addTodo: function() {
-    			if(this.newTodoItem !== '') {
-    				  methods: {
         addTodo: function() {
           if (this.newTodoItem !== '') {
             // this.newTodoItem만 상위 컴포넌트로 보내줄 수 있도록 함
@@ -116,4 +113,46 @@
     }
     ```
 
-    
+
+
+
+
+## 할 일 삭제 기능 
+
+-  TodoList.vue에서 관리하던 removeItem을 이제 App.vue에서 관리
+
+- App.vue (이벤트 받는 부분 `v-on`설정)
+
+  ```javascript
+  <todo-list v-bind:propsdata="todoItems" v-on:removeTodoItem="removeOneItem"></todo-list>
+  ```
+
+  
+
+- TodoList.vue
+
+  ```javascript
+  methods: {
+  	removeItem: function(todoItem, index) {
+  		this.$emit('removeTodoItem', todoItem, index);
+  	}
+  }
+  ```
+
+- App.vue 의 removeOneItem 메서드
+
+  ```javascript
+  removeOneItem: function(todoItem, index) {
+  	localStorage.removeItem(todoItem.item); // localStorage 아이템 지우기 (브라우저 저장소 영역) //todoItem만 지울 시, 그 key를 제대로 mapping하지 못해서, localStorage에서는 안지워짐
+  	this.todoItems.splice(index, 1); // 특정 인덱스를 지울 수 있는 자바스크립트 배열 메소드 (스크립트 영역)
+  },
+  ```
+
+
+
+
+
+## 할 일 완료 기능
+
+- 
+

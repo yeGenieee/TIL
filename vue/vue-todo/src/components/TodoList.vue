@@ -18,16 +18,10 @@ export default {
     props: ['propsdata'],
     methods: {
         removeTodo: function(todoItem, index) {
-            console.log(todoItem , index);
-            localStorage.removeItem(todoItem); // localStorage 아이템 지우기 (브라우저 저장소 영역)
-            this.todoItems.splice(index, 1); // 특정 인덱스를 지울 수 있는 자바스크립트 배열 메소드 (스크립트 영역)
+            this.$emit('removeTodoItem', todoItem, index);
         },
         toggleComplete: function(todoItem, index) {
-            console.log(todoItem, index);
-            todoItem.completed = !todoItem.completed;
-            // 로컬 스토리지에 데이터 갱신
-            localStorage.removeItem(todoItem.item);
-            localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
+            this.$emit('toggleTodoItem', todoItem, index);
         }
     }
 }
