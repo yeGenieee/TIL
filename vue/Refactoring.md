@@ -187,7 +187,7 @@
 
 
 
-### 안티 패턴 해결
+### toggleOneItem 메서드 내 안티 패턴 해결
 
 - App.vue 내에서 하위 컴포넌트로 내렸던 todoItems 속성을, (하위에서는 propsdata로 사용) 다시 위로 올려서 App.vue 메서드 내에서. todoItem에 바로 접근해서 변경하는 행위는 좋지 않은 패턴임
 
@@ -197,7 +197,33 @@
     this.todoItems[index].completed = !this.todoItems[index].completed;
     ```
 
-    
+
+
+## 할 일 모두 삭제 기능
+
+- TodoFooter.vue 에서 관리하던 clearAll 메서드 이제 App.vue에서 수정가능하도록 event emit
+
+  ```html
+  <todo-footer v-on:clearTodoItems="clearAllItems"></todo-footer>
+  ```
+
+- TodoFooter.vue clearAll 메서드 수정
+
+  ```javascript
+  clearTodo: function() {
+  	this.$emit('clearTodoItems')
+  }
+  ```
+
+
+
+- App.vue 내 clearAllItems 추가
+
+  ```javascript
+  clearAllItems: function() {
+  	localStorage.clear();
+    this.todoItems = []; // App.vue의 todoItems 배열 초기화
+  }
+  ```
 
   
-
