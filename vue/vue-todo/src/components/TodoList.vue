@@ -15,13 +15,23 @@
 
 <script>
 export default {
-    props: ['propsdata'],
     methods: {
         removeTodo: function(todoItem, index) {
-            this.$emit('removeTodoItem', todoItem, index);
+            // this.$emit('removeTodoItem', todoItem, index);
+            // const obj = {
+            //     todoItem: todoItem,
+            //     index: index
+            // }
+            // ES6에서 key - value가 같으면, 단축 가능
+            const obj = {
+                todoItem,
+                index
+            }
+            this.$store.commit('removeOneItem', { todoItem, index });
         },
         toggleComplete: function(todoItem, index) {
-            this.$emit('toggleTodoItem', todoItem, index);
+            // this.$emit('toggleTodoItem', todoItem, index);
+            this.$store.commit('toggleOneItem', { todoItem, index });
         }
     }
 }

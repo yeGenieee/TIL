@@ -1,11 +1,9 @@
 <template>
   <div id="app">
     <todo-header></todo-header>
-    <todo-input v-on:addTodoItem="addOneItem"></todo-input>
-    <todo-list v-bind:propsdata="todoItems" 
-      v-on:removeTodoItem="removeOneItem" 
-      v-on:toggleTodoItem="toggleOneItem"></todo-list>
-    <todo-footer v-on:clearTodoItems="clearAllItems"></todo-footer>
+    <todo-input></todo-input>
+    <todo-list></todo-list>
+    <todo-footer></todo-footer>
   </div>
 </template>
 
@@ -34,29 +32,7 @@ export default {
     'TodoInput': TodoInput,
     'TodoList': TodoList,
     'TodoFooter': TodoFooter
-  },
-  data: function() {
-    return {
-      todoItems: []
-    }
-  },
-  methods: {
-    removeOneItem: function(todoItem, index) {
-     localStorage.removeItem(todoItem.item); // localStorage 아이템 지우기 (브라우저 저장소 영역)
-     this.todoItems.splice(index, 1); // 특정 인덱스를 지울 수 있는 자바스크립트 배열 메소드 (스크립트 영역)
-    },
-    toggleOneItem: function(todoItem, index) {
-      this.todoItems[index].completed = !this.todoItems[index].completed;
-      // 로컬 스토리지에 데이터 갱신
-      localStorage.removeItem(todoItem.item);
-      localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
-    },
-    clearAllItems: function() {
-      localStorage.clear();
-      this.todoItems = [];
-    }
   }
-
 }
 </script>
 
