@@ -73,4 +73,62 @@
     };
     ```
 
-    
+
+
+## mapState
+
+### Vuex에 선언한 state 속성을 뷰 컴포넌트에 더 쉽게 연결해주는 헬퍼
+
+```javascript
+// App.vue
+import { mapState } from 'vuex'
+
+computed() {
+	...mapState(['num'])
+  // num() { return this.$store.state.num; } 와 동일
+}
+}
+
+// store.js
+state: {
+  num: 10
+}
+```
+
+```html
+<!-- <p>{{ this.$store.state.num }}</p> --> <!-- mapState를 쓰지 않았을 때 store에 접근하는 방법 -->
+<p>{{ this.num }}</p>
+```
+
+
+
+## mapGetters
+
+### Vuex에 선언한 getters 속성을 뷰 컴포넌트에 더 쉽게 연결해주는 헬퍼
+
+```javascript
+// App.vue
+import { mapGetters } from 'vuex'
+
+computed() {
+	...mapGetters(['reverseMessage'])
+}
+
+// store.js
+getters: {
+	reverseMessage(state) {
+		return state.msg.split('').reverse().join('');
+	}
+}
+```
+
+```html
+<!-- <p>{{ this.$store.getters.reverseMessage }}</p> -->
+<p>{{ this.reverseMessage }}</p>
+```
+
+
+
+### Spread Operator 를 쓰는 이유
+
+- 기존에 컴포넌트 내에 존재하는 `computed` 속성과 `mapGetters`를 함께 사용하기 위해서 ES6 Spread Operator 이용
