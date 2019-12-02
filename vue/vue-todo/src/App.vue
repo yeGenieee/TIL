@@ -41,11 +41,6 @@ export default {
     }
   },
   methods: {
-    addOneItem: function(todoItem) {
-      var obj = { completed: false, item: todoItem};
-      localStorage.setItem(todoItem, JSON.stringify(obj));
-      this.todoItems.push(obj); // localStorage와 동기화
-    },
     removeOneItem: function(todoItem, index) {
      localStorage.removeItem(todoItem.item); // localStorage 아이템 지우기 (브라우저 저장소 영역)
      this.todoItems.splice(index, 1); // 특정 인덱스를 지울 수 있는 자바스크립트 배열 메소드 (스크립트 영역)

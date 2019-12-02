@@ -20,7 +20,9 @@ export default {
     addTodo: function() {
       if (this.newTodoItem !== '') {
         // this.newTodoItem만 상위 컴포넌트로 보내줄 수 있도록 함
-        this.$emit('addTodoItem', this.newTodoItem);
+        // this.$emit('addTodoItem', this.newTodoItem);
+        const text = this.newTodoItem.trim(); // 앞 뒤 공백 제거
+        this.$store.commit('addOneItem', text);
         this.clearInput();
       }
     },
