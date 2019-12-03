@@ -1,7 +1,7 @@
 <template>
     <div>
         <ul>
-            <li v-for="(todoItem, index) in this.todoItems" v-bind:key="todoItem.item" class="shadow">
+            <li v-for="(todoItem, index) in this.storedTodoItems" v-bind:key="todoItem.item" class="shadow">
                 <i class="checkBtn fas fa-check" v-bind:class="{checkBtnCompleted: todoItem.completed }" 
                 v-on:click="toggleComplete(todoItem, index)"></i>
                 <span v-bind:class="{textCompleted: todoItem.completed}"> {{ todoItem.item }} </span>
@@ -14,6 +14,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
     methods: {
         removeTodo: function(todoItem, index) {
@@ -35,9 +37,11 @@ export default {
         }
     },
     computed: {
-        todoItems() {
-            return this.$store.getters.storedTodoItems;
-        }
+        ...mapGetters(['storedTodoItems'])
+        // spread Operator 이용 시, 템플릿 내 객체명과 getters 명이 다를 때, 객체로 사용
+        ...mapGetters({
+            todoItems: 'storedTodoItems'
+        })
     }
 }
 </script>
