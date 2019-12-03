@@ -1,7 +1,7 @@
 <template>
     <div>
         <ul>
-            <li v-for="(todoItem, index) in this.$store.state.todoItems" v-bind:key="todoItem.item" class="shadow">
+            <li v-for="(todoItem, index) in this.todoItems" v-bind:key="todoItem.item" class="shadow">
                 <i class="checkBtn fas fa-check" v-bind:class="{checkBtnCompleted: todoItem.completed }" 
                 v-on:click="toggleComplete(todoItem, index)"></i>
                 <span v-bind:class="{textCompleted: todoItem.completed}"> {{ todoItem.item }} </span>
@@ -32,6 +32,11 @@ export default {
         toggleComplete: function(todoItem, index) {
             // this.$emit('toggleTodoItem', todoItem, index);
             this.$store.commit('toggleOneItem', { todoItem, index });
+        }
+    },
+    computed: {
+        todoItems() {
+            return this.$store.getters.storedTodoItems;
         }
     }
 }
