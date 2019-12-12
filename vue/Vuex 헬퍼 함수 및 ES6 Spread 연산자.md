@@ -132,3 +132,10 @@ getters: {
 ### Spread Operator 를 쓰는 이유
 
 - 기존에 컴포넌트 내에 존재하는 `computed` 속성과 `mapGetters`를 함께 사용하기 위해서 ES6 Spread Operator 이용
+
+
+
+## mapMutations & mapActions
+
+### Vuex에 선언한 mutations 속성을 뷰 컴포넌트에 더 쉽게 연결해주는 헬퍼
+

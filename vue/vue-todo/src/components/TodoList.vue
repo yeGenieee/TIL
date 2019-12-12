@@ -39,9 +39,9 @@ export default {
     computed: {
         ...mapGetters(['storedTodoItems'])
         // spread Operator 이용 시, 템플릿 내 객체명과 getters 명이 다를 때, 객체로 사용
-        ...mapGetters({
-            todoItems: 'storedTodoItems'
-        })
+        // ...mapGetters({
+        //     todoItems: 'storedTodoItems'
+        // })
     }
 }
 </script>
