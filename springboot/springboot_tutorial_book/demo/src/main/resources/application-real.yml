@@ -1,0 +1,4 @@
+spring:
+  profiles: real
+server:
+  port: 8082
