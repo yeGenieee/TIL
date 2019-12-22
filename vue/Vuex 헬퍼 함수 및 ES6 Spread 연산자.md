@@ -135,7 +135,21 @@ getters: {
 
 
 
-## mapMutations & mapActions
+## mapMutations
 
 ### Vuex에 선언한 mutations 속성을 뷰 컴포넌트에 더 쉽게 연결해주는 헬퍼
+
+```javascript
+// App.vue
+import { mapMutations } from 'vuex'
+
+methods: {
+	...mapMutations([''])
+}
+
+// store.js
+mutations: {
+
+}
+```
 
