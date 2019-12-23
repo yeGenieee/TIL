@@ -9,4 +9,12 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+ 	<servlet-name>servletEx</servlet-name> 
+ 	<servlet-class>com.servlet.ServletEx</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>servletEx</servlet-name>
+  	<url-pattern>/SE</url-pattern>
+  </servlet-mapping>
 </web-app>
