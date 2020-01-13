@@ -23,31 +23,10 @@
 
 
 
-## 특정 사이트에서 검색 결과 가져오기
-
-> selenium 예제
-
-- 크롤링 사이트 호출 및 확인
-
 ```python
-# 크롤링 할 사이트 호출
-driver.get("http://www.python.org")
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 
-# Selenium은 웹 테스트를 위한 프레임워크로 다음과 같은 방식으로 웹 테스트를 자동으로 진행함 (참고)
-assert "Python" in driver.title # 웹 브라우저의 title에 Python이 없으면 에러 발생을 해라
+chromedriver = '/usr/local/Cellar/chromedriver/chromedriver'
+driver = webdriver.Chrome(chromedriver)
 ```
-
-
-
-- 주요 함수 -  find_element_by_name(), find_elements_by_name()
-
-  - fine_element_by_name() : 최초 발견한 name으로 가져오기
-
-  - find_elements_by_name() : name 이 동일한 모든 리스트를 가져오기
-
-    ```python
-    # <input id="id-search-field" name="q" 검색창 name으로 검색하기
-    # 태그 name으로 특정한 태그를 찾을 수 있음
-    elem = driver.find_element_by_name("q")
-    ```
-
