@@ -52,26 +52,44 @@ driver = webdriver.PhantomJS(phantomjs_file) # 맥
 
   - 다음 코드만 추가해주면 됨
 
+  - headless chrome 사용을 선언하는 chrome_options를 넣어주면 됨
+  
+  - `driver = webdriver.Chrome(chromedriver, options=options)`
+  
     ```python
     from selenium import webdriver
+    from selenium.webdriver.common.keys import Keys
+    import time
     
     options = webdriver.ChromeOptions()
     options.add_argument('headless')
-    options.add_argument('window-size=1920x1080')
-    options.add_argument("disable-gpu")
-    options.add_argument("User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_)")
+    options.add_argument('window-size=1920x1080') # 웹 브라우저의 사이즈 지정
+    options.add_argument("disable-gpu") # grapic card를 사용하지 않는다
+    options.add_argument("User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_)") # head 에 User Agent 지정
     options.add_argument("lang=ko_KR")
     
     chromedriver = '/usr/local/Cellar/chromedriver/chromedriver'
     driver = webdriver.Chrome(chromedriver, options=options)
-    driver.get('http://v.media.daum.net/v/20170202185812986')
+  driver.get('http://v.media.daum.net/v/20170202185812986')
     
     body = driver.find_element_by_id('harmonyContainer')
     print(body.text)
-    driver.quit()
+  driver.quit()
     ```
-
     
 
 
+
+```python
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+import time
+
+chromdriver = '/usr/local/Cellar/chromedriver/chromedriver'
+headless_options = webdriver.ChromeOptions()
+headless_options.add_argument('headless')
+driver = webdriver.Chrome(chromedriver, options=headless_options)
+
+driver = webdriver.Chrome(chromedriver)
+```
 
