@@ -31,13 +31,13 @@
 
 # Vue의 핵심 : Reactivity
 
-#### Object.defineProperty() 
+#### Object.defineProperty()
 
 - 객체의 특정 속성을 재정의하는 메서드
 
 ```javascript
 Object.defineProperty (대상 객체, 객체의 속성, {
-   // 문법 
+   // 문법
 });
 ```
 
@@ -67,7 +67,7 @@ Object.defineProperty (대상 객체, 객체의 속성, {
         // Object.defineProperty(대상객체, 객체의 속성 {
           // 정의할 내용  
         // })
-        
+
         Object.defineProperty(viewModel, 'str', {
             // 속성에 접근했을 때의 동작을 정의
             get: function() {
@@ -172,7 +172,7 @@ new Vue();
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
         var vm = new Vue({
-            el: '#app', // element : body 태그 내에서 app이라는 id를 가진 태그를 찾아 인스턴스를 붙이겠다 
+            el: '#app', // element : body 태그 내에서 app이라는 id를 가진 태그를 찾아 인스턴스를 붙이겠다
             data: {
                 message: 'hi'
             }
@@ -262,10 +262,10 @@ new Vue({
                 message: 'hi'
             },
             methods: {
-                
+
             },
             created: function() {
-                
+
             }
         });
 ```

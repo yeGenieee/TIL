@@ -29,7 +29,7 @@
    }
   ```
 
-  
+
 
 - App.vue에서 관리하는 todoItems 컴포넌트 데이터를 TodoList.vue로 내려보내주어야 함
 
@@ -117,7 +117,7 @@
 
 
 
-## 할 일 삭제 기능 
+## 할 일 삭제 기능
 
 -  TodoList.vue에서 관리하던 removeItem을 이제 App.vue에서 관리
 
@@ -127,7 +127,7 @@
   <todo-list v-bind:propsdata="todoItems" v-on:removeTodoItem="removeOneItem"></todo-list>
   ```
 
-  
+
 
 - TodoList.vue
 
@@ -164,7 +164,7 @@
   	v-on:toggleTodoItem="toggleOneItem"></todo-list>
   ```
 
-  
+
 
 - TodoList.vue 내 toggleItem 메서드 수정
 
@@ -226,7 +226,7 @@
   }
   ```
 
-  
+
 
 ## 리팩토링 정리
 

@@ -12,7 +12,7 @@
       {{ str }}
     </div>
   </template>
-  
+
   <script>
   export default {
     data: function() { // data: { str: 'hi' } 가 아님
@@ -22,7 +22,7 @@
     }
   }
   </script>
-  
+
   <style>
   
   </style>
@@ -42,12 +42,12 @@
       <app-header></app-header>
     </div>
   </template>
-  
+
   <script>
   var AppHeader = {
     template: '<header><h1>Header</h1></header>'
   }
-  
+
   </script>
   ```
 
@@ -66,10 +66,10 @@
       <app-header v-bind:propsdata="str"></app-header>
     </div>
   </template>
-  
+
   <script>
   import AppHeader from './components/AppHeader.vue';
-  
+
   export default {
     data: function() {
       return {
@@ -92,17 +92,17 @@
         </h1>
       </header>
   </template>
-  
+
   <script>
   export default {
       // 인스턴스 옵션
       props: ['propsdata']
-  
+
   }
   </script>
   ```
 
-  
+
 
 ##  싱글 파일 컴포넌트에서 event emit 구현
 
@@ -119,7 +119,7 @@
         <button v-on:click="sendEvent">send</button>
       </header>
   </template>
-  
+
   <script>
   export default {
       // 인스턴스 옵션
@@ -129,7 +129,7 @@
                this.$emit('renew'); // 이벤트 올림
           }
       }
-  
+
   }
   </script>
   ```
@@ -140,19 +140,19 @@
   <template>
     <div>
       <!-- <app-header v-bind:프롭스 속성 이름="상위 컴포넌트의 데이터 이름"></app-header> -->
-      <app-header 
+      <app-header
         v-bind:propsdata="str"
         v-on:renew="renewStr"></app-header>
     </div>
   </template>
-  
+
   <script>
   import AppHeader from './components/AppHeader.vue';
-  
+
   // var AppHeader = {
   //   template: '<header><h1>Header</h1></header>'
   // }
-  
+
   export default {
     data: function() {
       return {
