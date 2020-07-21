@@ -8,11 +8,10 @@
       </span>
 
     <modal v-if="showModal" @close="showModal = false">
-      <!--
-        you can use custom content here to overwrite
-        default content
-      -->
-      <h3 slot="header">custom header</h3>
+      <h3 slot="header">경고!
+        <i class="fas fa-times" @click="showModal = false"></i>
+      </h3>
+      <h3 slot="body">아무것도 입력하지 않으셨습니다.</h3>
     </modal>
   </div>
 </template>
@@ -23,7 +22,8 @@ import Modal from './common/Modal.vue'
 export default {
   data: function() {
     return {
-      newTodoItem: ""
+      newTodoItem: "",
+      showModals: false
     }
   },
   methods: {
@@ -35,7 +35,7 @@ export default {
         this.$store.commit('addOneItem', text);
         this.clearInput();
       } else {
-        alert('type something');
+        this.showModals = !this.showModals;
       }
     },
     clearInput: function() {
