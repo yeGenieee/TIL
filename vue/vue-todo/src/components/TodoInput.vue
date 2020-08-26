@@ -6,10 +6,20 @@
       <span class="addContainer" v-on:click="addTodo">
         <i class="fas fa-plus addBtn"></i>
       </span>
+
+    <modal v-if="showModal" @close="showModal = false">
+      <!--
+        you can use custom content here to overwrite
+        default content
+      -->
+      <h3 slot="header">custom header</h3>
+    </modal>
   </div>
 </template>
 
 <script>
+import Modal from './common/Modal.vue'
+
 export default {
   data: function() {
     return {
@@ -24,11 +34,16 @@ export default {
         const text = this.newTodoItem.trim(); // 앞 뒤 공백 제거
         this.$store.commit('addOneItem', text);
         this.clearInput();
+      } else {
+        alert('type something');
       }
     },
     clearInput: function() {
       this.newTodoItem = '';
     }
+  },
+  components: {
+
   }
 }
 </script>
