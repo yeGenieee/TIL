@@ -1,10 +1,10 @@
 # 포트폴리오
 ## 진행했던 프로젝트
 
-![최예진_포트폴리오_1](yeGenieee_portfolio/최예진_포트폴리오_1.jpeg)
+![1](yeGenieee_portfolio/yeGenieee_portfolio_1.jpeg)
 
-![최예진_포트폴리오_2](yeGenieee_portfolio/최예진_포트폴리오_2.jpeg)
+![2](yeGenieee_portfolio/yeGenieee_portfolio_2.jpeg)
 
-![최예진_포트폴리오_3](yeGenieee_portfolio/최예진_포트폴리오_3.jpeg)
+![3](yeGenieee_portfolio/yeGenieee_portfolio_3.jpeg)
 
-![최예진_포트폴리오_4](yeGenieee_portfolio/최예진_포트폴리오_4.jpeg)
+![4](yeGenieee_portfolio/yeGenieee_portfolio_4.jpeg)
