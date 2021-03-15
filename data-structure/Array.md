@@ -178,6 +178,97 @@ for (int square : squareNumbers) {
 
 ## Array Capacity VS Length
 
+  만약 누군가가 DVD 배열의 길이가 얼마인지 묻는다면 어떻게 대답할 것인가?
+
+1. 배열이 담을 수 있는 DVD의 최대 개수
+2. 현재 배열에 담겨있는 DVD의 개수
+
+  위의 두 답변 모두 맞지만, 의미가 조금 다르다. 첫번째는 배열의 용량 (capacity) 이라 칭하고, 두번째는 배열의 길이 (length)
+
+라고 한다.
+
+
+
+### 1. Array Capacity
+
+```java
+DVD[] array = new DVD[6]
+```
+
+   `array[6]` 나 `array[10]` 에 요소를 저장하고자 하는 것은 올바른 연산일까? 두 가지 모두 배열의 용량을 벗어난 연산이기에 올바르지 않다. 왜냐하면, `array` 배열은 6개의 요소만을 저장할 수 있도록 선언했기 때문이다. 여기서 주목해야 할 속성이 **capacity**이다. **Capacity**, 배열의 용량은 해당 배열이 생성될 때 결정되는 배열의 크기이다. 위의 array의 capacity는 6이라고 할 수 있다. 만약, `array[-3]` 과 같이 접근하고자 한다면, `ArrayIndexOutOfBoundsException` 을 마주할 수 밖에 없다.
+
+#### capacity
+
+- 배열의 capacity는 배열이 생성될 때 결정되는 특성이고, 이후에 변하지 않는다
+
+- 만약, 배열의 capacity를 늘리고 싶다면, 배열 자체를 새로 생성해야 한다
+
+- Java에서 배열의 용량은 `length` 속성을 이용하여 확인 할 수 있다
+
+  ```java
+  int capacity = array.length;
+  System.out.println("The Array has a capacity of " + capacity);
+  // The Array has a capacity of 6
+  ```
+
+
+
+### 2. Array Length
+
+  배열의 길이는 현재 배열 안에 있는 요소의 개수라고 생각하면 된다. Length는 결국 개발자가 트래킹해야 하는 값이다.
+
+다음은 배열의 length를 얻는 예제이다
+
+```java
+int[] array = new int[6];
+
+int length = 0;
+
+for (int i=0; i<3; i++) {
+		array[i] = i * i;
+		length++;
+}
+
+System.out.println("The Array has a capacity of " + array.length);
+System.out.println("The Array has a length of " + length);
+// The Array has a capacity of 6
+// The Array has a length of 3
+```
+
+
+
+### 3.Handling Array Parameters
+
+  배열의 인덱스는 항상 `0`부터 시작하기 때문에, 배열의 가장 최고의 인덱스는 `.length - 1` 이다. 그러므로, 배열을 순회하려면, 다음과 같이 반복을 하면 된다.
+
+```java
+class Solution {
+		public int findMaxConsecutiveOnes(int[] nums) {
+				for (int i=0; i<nums.length; i++) {
+						// Do something
+				}
+		}
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
