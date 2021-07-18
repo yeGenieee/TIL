@@ -423,3 +423,9 @@ Index 5 contains 10
 
 
 
+
+
+## Reference
+
+- https://leetcode.com/explore/learn/card/fun-with-arrays/
+

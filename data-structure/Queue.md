@@ -180,7 +180,7 @@ public class QueueMain {
 
 
 
-## 2. Circular Queue (=Ring Buffer)
+## 3. Circular Queue (=Ring Buffer)
 
   앞서, 배열로 구현된 큐의 비효율성을 확인해보았다. 이를 조금 더 효율적으로 이용하기 위해 우리는 **원형 큐** 의 개념을 도입하게 된다. 원형 큐는 배열로 구현된 큐의 마지막 last position 다음이 바로 first position으로 연결된 논리적인 형태로, 그 모습이 마치 원과 같이 연결되는 모양이라 원형 큐라고 부른다. 원형 큐는 `Ring Buffer` 라고도 부른다.
 
@@ -289,8 +289,8 @@ public class BuiltInQueue {
 
 
 
-## 3. Queue와 BFS
+## Reference
 
-
-
- 
+- https://leetcode.com/explore/learn/card/queue-stack/
+- 윤성우, 『윤성우의 열혈 자료구조』, 오렌지미디어(2013), p.251 ~ p.286
+- 게일 라크만 맥도웰, 『코딩 인터뷰 완전 분석』, 프로그래밍인사이트(2019), p.145 ~ p.146

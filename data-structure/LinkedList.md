@@ -25,3 +25,12 @@
 ## Singly Linked List
 
   Singly Linked List의 각 노드는 값만을 저장하는 것이 아닌 다음 노드를 가리키는  `reference field` 도 저장한다. 아래 그림을 보자.
+
+
+
+
+
+## Reference
+
+- https://leetcode.com/explore/learn/card/linked-list/
+
