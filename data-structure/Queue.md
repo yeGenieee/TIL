@@ -289,6 +289,132 @@ public class BuiltInQueue {
 
 
 
+## 4. Queue and BFS
+
+  BFS (Breadth-first Search) 는 그래프 내 루트 토느에서 타겟 노드까지의 최단 경로를 찾는 알고리즘이다. 
+
+
+
+### 1. 노드의 처리 순서는 무엇인가?
+
+  첫 번째 라운드에서는, 루트 노드를 처리한다. 두 번째 라운드에서는 루트 노드 다음 노드를 처리하고, 세 번째 라운드에서는 루트 노드로 부터 두 단계 떨어져있는 노드를 처리한다. 이렇게 계속 처리한다.
+
+
+
+  트리의 레벨 기반의 순회와 비슷하게, 루트 노드와 더 가까운 노드에 더 먼저 방문하게 된다. 
+
+  만약, 노드 `X` 가 큐에 `k` 번째 라운드에 추가된다면, 루트 노드와 노드 `X` 사이의 최단 경로의 거리 (길이)는 `k` 가 된다. 그 말인 즉슨, 타겟 노드를 처음 찾는 때는 이미 최단경로에 있다는 것이다.
+
+
+
+### 2. 큐의 enqueue 와 dequeue 순서는 무엇인가?
+
+  첫 번째로, 루트 노드를 enqueue한다. 그리고 각 라운드마다, 큐에 이미 있는 노드들을 처리하고, 해당 노드들의 이웃 노드들을 큐에 추가한다. 새로 큐에 추가된 노드들은 즉시 방문되지 않고, 다음 라운드에서 처리된다. 노드들의 처리 순서는 큐에 추가된 순서와 정확하게 일치한다. 즉, 선입선출 (FIFO) 라는 것이다. 이 선입선출 방식을 이용하기에 우리는 BFS에서 큐를 이용하는 것이다.
+
+
+
+## 5. BFS - Template
+
+  위에서 확인했듯이, 우리는 BFS를 이용할 때 두 가지 메인 시나리오를 가지고 진행한다.
+
+1.  `do traversal` : 방문
+2. `find the shortest path` : 최단 경로 찾기
+
+이다. 
+
+### 1. Template I
+
+#### 슈도코드
+
+```java
+/**
+* 루트와 타겟 노드 사이의 최단 경로의 길이를 리턴
+*/
+int BFS(Node root, Node target) {
+	Queue<Node> queue; // 처리되어질 (처리 되기를 기다리는) 모든 노드들을 저장
+	int step = 0 ; // 루트 노드에서 현재 노드까지 순회 시 와야하는 step 수
+	
+	// 초기화
+	add root to queue;
+	
+	// BFS
+	while (queue is not empty) {
+		step = step + 1;
+		
+		// 큐 안에 이미 들어있는 노드들을 반복
+		int size = queue.size();
+		
+		for (int i = 0; i < size; i++) {
+			Node cur = the first node in queue;
+			return step if cur is target;
+			
+			for (Node next : the neighbors of cur) {
+				add next to queue;
+			}
+			
+			remove the first node from queue;
+		}
+	}
+	
+	return -1; // 루트 노드에서 타겟 노드까지 가는 경로가 없는 경우 -1을 리턴
+}
+```
+
+  위의 코드에서 볼 수 있듯이, 
+
+1. 각 라운드마다, **큐 안에 있는 노드들**은 **처리 되길 기다리**는 노드들이다
+2. `while` 루프를 돌 때 마다, 루트 노드에서 부터 **한 스텝씩 멀어지게 된다**. `step` 변수는 **루트 노드에서부터 현재 방문중인 노드 까지의 거리**를 나타낸다. 
+
+### 2. Template II
+
+  **한 번 방문한 적이 있는 노드를 두 번 방문하지 않는 것**이 중요할 때가 있다. 그렇지않으면, 무한 루프에 빠질 수도 있기 때문이다. 그래서, 우리는 이 문제를 해결하기 위해서, hash set을 추가한다.
+
+#### 슈도코드
+
+```java
+/**
+* 루트 노드와 타겟 노드 사이의 최단 경로 길이를 리턴
+*/
+int BFS(Node root, Node target) {
+	Queue<Node> queue; // 처리되어질 (처리 되기를 기다리는) 모든 노드들을 저장
+	Set<Node> visited; // 방문한 적이 있는 노드들을 저장
+	int step = 0;
+	
+	// 초기화
+	add root to queue;
+  add root to visited;
+  
+  // BFS
+	while (queue is not empty) {
+		step = step + 1;
+		
+		// 큐에 이미 있는 노드들 반복
+		int size = queue.size();
+		
+		for (int i = 0; i < size; i++) {
+			Node cur = the first node in queue;
+			return step if cur is target;
+			
+			for (Node next : the neighbors of cur) {
+				if (next is not in used) {
+					add next to queue;
+					add next to visited;
+				}
+			}
+			remove the first node from queue;
+		}
+	}
+	
+	return -1; // 루트 노드에서 타겟 노드까지 가는 경로가 없는 경우 -1 을 리턴
+}
+```
+
+- `visited` hash set을 관리하지 않아도 되는 경우
+  1. 그래프에 사이클이 확실히 사이클이 없는 경우
+  2. 큐에 노드를 여러번 추가하고 싶은 경우
+
+
+
 ## Reference
 
 - https://leetcode.com/explore/learn/card/queue-stack/
