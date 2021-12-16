@@ -140,7 +140,7 @@ Star Wars, directed by George Lucas, released in 1977
   배열에 다수의 값을 저장할 때는 흔히 반복문을 이용한다. 아래 예제를 통해 반복문을 이용하여 배열에 값을 저장하는 방법을 살펴보자.
 
 ```java
-int squareNumbers = new int[10];
+int[] squareNumbers = new int[10];
 
 for (int i=0; i<10; i++) {
 		int square = (i + 1) * (i + 1);
@@ -423,9 +423,33 @@ Index 5 contains 10
 
 
 
+## Arrays in Memory - 배열의 특징
+
+1. **Contiguous block in memory** : 배열은 메모리에 연속된 공간을 할당받아서 데이터를 저장한다
+   - 그러므로, 배열 선언과 동시에 배열의 크기를 지정해줘야하며, 한 번 선언된 배열의 크기는 재지정할 수 없게 되는 것이다.
+2. **Every element occupies the same amount of space in memory** : 배열의 모든 원소는 메모리 내 모두 동일한 크기로 할당된다
+   - ex) int형 배열을 생성하면, 배열의 각 원소는 4byte 메모리 공간을 할당받게 된다. 1번 원소는 4byte / 2번 원소는 8byte 등의 메모리 할당은 불가능하다!
+   - Primitive Type이 아닌 참조형 배열의 경우, 참조형 배열에 실제 저장되는 값은 object가 아닌 ! object의 **reference**이다 
+     - object reference는 해당 참조가 가리키는 object들의 타입이 무엇인지에 관계없이 항상 같은 크기를 가진다
+3. We can easily calculate the memory address of the `i` th element : 이렇게 배열이 연속된 공간으로 할당되기에, 우리는 배열이 메모리에 할당된 처음 주소 (`x`) 와 배열의 타입의 크기 (`y`) 만 알면, 배열의 `i` 번째 원소를 손쉽게 계산할 수 있다! => `x + i*y` 
+4. If we know the index of an element, the time to retreive the element will be same, no matter where it is in the array : 그러므로 우리는 원소 (요소)의 인덱스 값만 알면, 배열에 뭐가 저장되어있든지 간에 해당 원소에 접근하는 시간은 항상 같을 수 밖에 없다!!
+
+## Operation - Time Complexity
+
+| Operation (연산)                                             | Time Complexity (시간 복잡도)                         |
+| ------------------------------------------------------------ | ----------------------------------------------------- |
+| Retreive with index                                          | O(1)                                                  |
+| Retreive without index                                       | O(n)                                                  |
+| Add an element to a full array                               | O(n) - 배열 내부를 반복하면서 copy(or add)해야 하므로 |
+| Add an element to the end of an array (has space)            | O(1)                                                  |
+| Insert or update an element at a specific index              | O(1)                                                  |
+| Delete an element by setting it to null                      | O(1)                                                  |
+| Delete an element by shifting elements (아이템을 삭제하면서 삭제된 이후의 아이템들을 옮기는 경우) | O(n)                                                  |
+
 
 
 ## Reference
 
 - https://leetcode.com/explore/learn/card/fun-with-arrays/
+- https://www.udemy.com/course/data-structures-and-algorithms-deep-dive-using-java/
 
